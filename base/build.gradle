@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "Long", "TIME_OUT", "5L"
+        }
+
+        release {
+            buildConfigField "Long", "TIME_OUT", "15L"
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+
+    // Retrofit
+    compile "com.squareup.okhttp3:okhttp:3.9.0"
+    compile "com.squareup.okhttp3:logging-interceptor:3.9.0"
+    compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    compile "com.squareup.retrofit2:retrofit:2.3.0", {
+        exclude module: 'okhttp'
+    }
+    compile "com.squareup.retrofit2:converter-gson:2.3.0"
+
+    // RxJava
+    compile "io.reactivex.rxjava2:rxjava:2.1.2"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    // RxKotlin
+    compile "io.reactivex.rxjava2:rxkotlin:2.1.0"
+
+    // RxBinding
+    compile "com.jakewharton.rxbinding2:rxbinding:2.0.0"
+    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0"
+    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0"
+}
+
+repositories {
+    mavenCentral()
+}

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forecastContainer"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/forecastImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        tools:src="@drawable/weather_storm" />
+
+    <LinearLayout
+        android:id="@+id/forecastDescriptionContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@+id/forecastImageView"
+        android:orientation="vertical">
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastWeatherTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:fontName="Open_Sans_Bold"
+            tools:text="Tormenta" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastCurrentTempTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:fontName="Open_Sans_Semi_Bold"
+            tools:text="18 ºC" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastPrecipitationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:fontName="Open_Sans_Semi_Bold"
+            tools:text="10 mm" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:fontName="Open_Sans_Semi_Bold"
+            tools:text="2017-12-02 14:15:42" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_toEndOf="@+id/forecastDescriptionContainer"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastMinAndMaxTempTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            app:fontName="Open_Sans_Semi_Bold"
+            tools:text="10/20 ºC" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastWindSpeedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:fontName="Open_Sans_Regular"
+            tools:text="10 m/s" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastHumidityPercentageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:fontName="Open_Sans_Regular"
+            tools:text="10 mm" />
+
+        <manuelperera.com.weather3.view.widget.TypefaceTextView
+            android:id="@+id/forecastCloudsPercentageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            app:fontName="Open_Sans_Regular"
+            tools:text="10 %" />
+
+    </LinearLayout>
+
+</RelativeLayout>

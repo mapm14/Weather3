@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fontName" format="enum">
+        <enum name="Open_Sans_Regular" value="0" />
+        <enum name="Open_Sans_Semi_Bold" value="1" />
+        <enum name="Open_Sans_Bold" value="2" />
+    </attr>
+
+    <declare-styleable name="TypefaceTextView">
+        <attr name="fontName" />
+        <attr name="letterSpacing" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="TypefaceButton">
+        <attr name="fontName" />
+    </declare-styleable>
+
+    <declare-styleable name="TypefaceEditText">
+        <attr name="fontName" />
+    </declare-styleable>
+
+</resources>

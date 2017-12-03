@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Weather 3</string>
+
+    // Permissions error
+    <string name="no_permissions">You must accept location permissions to use the app</string>
+    <string name="grant_permissions">Active location</string>
+
+    // Forecast formats
+    <string name="temp_celsius_format" formatted="false">Temp: %.0f ºC</string>
+    <string name="celsius_format" formatted="false">%.0f ºC</string>
+    <string name="temp_min_and_max_celsius_format" formatted="false">Min and max: %.0f/%.0f ºC</string>
+    <string name="wind_ms_format" formatted="false">Wind: %.0f m/s</string>
+    <string name="rain_mm_format" formatted="false">Rain last 3h: %.0f mm</string>
+    <string name="humidity_percentage_format" formatted="false">Humidity: %d%%</string>
+    <string name="clouds_percentage_format" formatted="false">Clouds: %d%%</string>
+
+    // Network Error
+    <string name="network_error_message">No Internet connection</string>
+    <string name="retry">Retry</string>
+    <string name="ups_error_message">¡Ups! An error occurred</string>
+    <string name="unknown_error_message">¡Ups! Something did not go well</string>
+    <string name="tts_not_supported">Text to speech not supported</string>
+</resources>

@@ -15,8 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class ForecastServiceUnitTest {
 
     @Mock
-    private
-    lateinit var forecastModel: ForecastModel
+    private lateinit var forecastModel: ForecastModel
 
     private val forecastByCityData: ForecastByCity = ForecastByCity(City("", "", Coordinates("", ""), ""), listOf())
 

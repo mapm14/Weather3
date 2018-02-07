@@ -2,8 +2,8 @@ package manuelperera.com.base.screen.view
 
 import android.support.v7.util.DiffUtil
 
-class RecyclerViewDiffUtilCallback<T>(var mOldList: MutableList<T>,
-                                      var mNewList: MutableList<T>) : DiffUtil.Callback() {
+class RecyclerViewDiffUtilCallback<T>(private var mOldList: MutableList<T>,
+                                      private var mNewList: MutableList<T>) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = mOldList.size
 

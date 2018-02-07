@@ -3,7 +3,7 @@ package manuelperera.com.base.screen.presenter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class AdapterPresenter<V: PresenterView> {
+abstract class AdapterPresenter<V : PresenterView> {
     private var mCompositeDisposable: CompositeDisposable? = null
     var view: V? = null
 
@@ -19,12 +19,11 @@ abstract class AdapterPresenter<V: PresenterView> {
 
     fun clear() {
         view = null
-        if (mCompositeDisposable != null)
-            mCompositeDisposable!!.dispose()
+        mCompositeDisposable?.dispose()
     }
 
     protected fun addSubscription(disposable: Disposable) {
-        mCompositeDisposable!!.add(disposable)
+        mCompositeDisposable?.add(disposable)
     }
 
     protected abstract fun init()

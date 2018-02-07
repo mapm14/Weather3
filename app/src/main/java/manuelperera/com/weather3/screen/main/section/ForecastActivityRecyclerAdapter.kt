@@ -84,10 +84,7 @@ class ForecastActivityRecyclerAdapter(private val forecastActivityPresenterView:
 
     fun reloadAdapter() {
         forecastActivityRecyclerAdapterPresenter.listData.clear()
-        forecastActivityRecyclerAdapterPresenter.bindReloadDataObservable(Observable.create { observer ->
-            observer.onNext(true)
-            observer.onComplete()
-        })
+        forecastActivityRecyclerAdapterPresenter.bindReloadDataObservable(Observable.just(1))
     }
 
 }

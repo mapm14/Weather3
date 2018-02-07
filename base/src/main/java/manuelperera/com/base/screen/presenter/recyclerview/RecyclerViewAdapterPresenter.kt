@@ -53,67 +53,57 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
                 .subscribe(showResults()))
     }
 
-    private fun load(): Observable<DiffUtil.DiffResult> {
-        return loadObservableData()
-                .flatMap<DiffUtil.DiffResult>(calculateRecyclerViewDiffs())
-    }
+    private fun load(): Observable<DiffUtil.DiffResult> =
+            loadObservableData()
+                    .flatMap<DiffUtil.DiffResult>(calculateRecyclerViewDiffs())
 
-    private fun showResults(): Consumer<DiffUtil.DiffResult> {
-        return Consumer { diffResult -> getDiffResultBinder(diffResult) }
-    }
+    private fun showResults(): Consumer<DiffUtil.DiffResult> =
+            Consumer { diffResult -> getDiffResultBinder(diffResult) }
 
-    fun hasLoadingView(): Boolean? {
-        return mLoadingList != null && !mLoadingList!!.isEmpty()
-    }
+    fun hasLoadingView(): Boolean? =
+            mLoadingList != null && !mLoadingList!!.isEmpty()
 
-    private fun loadLoadingData(): Observable<Transaction<List<T>>> {
-        return Observable.create<Transaction<List<T>>> { observer ->
-            observer.onNext(Transaction(mLoadingList, TransactionStatus.SUCCESS))
-            observer.onComplete()
-        }
-    }
+    private fun loadLoadingData(): Observable<Transaction<List<T>>> =
+            Observable.just(Transaction(mLoadingList, TransactionStatus.SUCCESS))
 
-    private fun calculateRecyclerViewDiffs(): Function<Transaction<List<T>>, Observable<DiffUtil.DiffResult>> {
-        return Function { transaction ->
-            Observable.create<DiffUtil.DiffResult> { observer ->
-                observer.onNext(calculateRecyclerViewDiffResult(if (transaction.isSuccess()) transaction.data else mNetworkErrorList))
-                observer.onComplete()
-            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-        }
-    }
+    private fun calculateRecyclerViewDiffs(): Function<Transaction<List<T>>, Observable<DiffUtil.DiffResult>> =
+            Function { transaction ->
+                Observable.create<DiffUtil.DiffResult> { observer ->
+                    observer.onNext(calculateRecyclerViewDiffResult(if (transaction.isSuccess()) transaction.data else mNetworkErrorList))
+                    observer.onComplete()
+                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            }
 
     private fun loadData() {
         addSubscription(load().subscribe(showResults()))
     }
 
-    private fun loadObservableData(): Observable<Transaction<List<T>>> {
-        return getLoadObservable().map<Transaction<List<T>>>(addAdapterItemTypeToElements())
-    }
+    private fun loadObservableData(): Observable<Transaction<List<T>>> =
+            getLoadObservable().map<Transaction<List<T>>>(addAdapterItemTypeToElements())
 
-    private fun addAdapterItemTypeToElements(): Function<Transaction<List<T>>, Transaction<List<T>>> {
-        return Function { transaction ->
-            val newTransaction: Transaction<List<T>>
+    private fun addAdapterItemTypeToElements(): Function<Transaction<List<T>>, Transaction<List<T>>> =
+            Function { transaction ->
+                val newTransaction: Transaction<List<T>>
 
-            if (transaction.isSuccess() && transaction.data != null) {
-                val list = ArrayList<T>()
+                if (transaction.isSuccess() && transaction.data != null) {
+                    val list = ArrayList<T>()
 
-                transaction.data?.let { data ->
-                    for (element in data) {
-                        if (element.getType() !== RecyclerViewAdapterItem.Type.HEADER && element.getType() !== RecyclerViewAdapterItem.Type.ITEM) {
-                            element.setType(RecyclerViewAdapterItem.Type.ITEM)
+                    transaction.data?.let { data ->
+                        for (element in data) {
+                            if (element.getType() !== RecyclerViewAdapterItem.Type.HEADER && element.getType() !== RecyclerViewAdapterItem.Type.ITEM)
+                                element.setType(RecyclerViewAdapterItem.Type.ITEM)
+
+                            list.add(element)
                         }
-                        list.add(element)
                     }
-                }
 
-                transaction.data = list
-                newTransaction = transaction
-            } else
-                newTransaction = Transaction(status = TransactionStatus.ERROR)
+                    transaction.data = list
+                    newTransaction = transaction
+                } else
+                    newTransaction = Transaction(status = TransactionStatus.ERROR)
 
-            newTransaction
-        }
-    }
+                newTransaction
+            }
 
     private fun getDiffResultBinder(diffResult: DiffUtil.DiffResult) {
         view?.getDiffResultBinder(diffResult)
@@ -130,13 +120,8 @@ abstract class RecyclerViewAdapterPresenter<V : RecyclerViewAdapterPresenterView
             mNetworkErrorList = ArrayList()
     }
 
-    private fun loadEmptyData(): Observable<Transaction<List<T>>> {
-        return Observable.create<Transaction<List<T>>> { observer ->
-            val emptyList = ArrayList<T>()
-            observer.onNext(Transaction(emptyList, TransactionStatus.SUCCESS))
-            observer.onComplete()
-        }
-    }
+    private fun loadEmptyData(): Observable<Transaction<List<T>>> =
+            Observable.just(Transaction(emptyList(), TransactionStatus.SUCCESS))
 
     abstract fun getLoadingList(): List<T>
 

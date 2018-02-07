@@ -2,6 +2,7 @@ package manuelperera.com.weather3.screen.main
 
 import android.content.Context
 import android.location.Geocoder
+import manuelperera.com.base.client.transaction.TransactionStatus
 import manuelperera.com.base.screen.presenter.Presenter
 import manuelperera.com.weather3.usecase.forecast.ClearCacheForecastUseCase
 import manuelperera.com.weather3.usecase.forecast.GetForecastsUseCase
@@ -24,8 +25,10 @@ class ForecastActivityPresenter(private val context: Context,
 
     fun getCurrentForecast() {
         addSubscription(getForecastsUseCase.bind().subscribe { transaction ->
-            if (transaction.isSuccess())
-                view?.setToolbarInfo(transaction.data!![0])
+            transaction.data?.let { data ->
+                if (transaction.isSuccess() && data.isNotEmpty())
+                    view?.setToolbarInfo(data[0])
+            }
         })
     }
 

@@ -1,7 +1,7 @@
 package manuelperera.com.base.usecase
 
-interface UseCase<T> {
+interface UseCase<out T> {
 
-    abstract fun bind(): T
+    fun bind(): T
 
 }

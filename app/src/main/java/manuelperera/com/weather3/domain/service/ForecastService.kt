@@ -8,8 +8,8 @@ import manuelperera.com.weather3.domain.objects.ForecastByCity
 
 open class ForecastService(private val forecastModel: ForecastModel) {
 
-    lateinit private var lat: String
-    lateinit private var lon: String
+    private lateinit var lat: String
+    private lateinit var lon: String
 
     open fun setLatAndLon(lat: String, lon: String): Completable =
             Completable.create {

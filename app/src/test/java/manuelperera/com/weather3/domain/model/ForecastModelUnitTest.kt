@@ -20,11 +20,11 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class ForecastModelUnitTest {
 
-    @Mock private
-    lateinit var forecastApiRepository: ForecastApiRepository
+    @Mock
+    private lateinit var forecastApiRepository: ForecastApiRepository
 
-    @Mock private
-    lateinit var forecastCacheRepository: ForecastCacheRepository
+    @Mock
+    private lateinit var forecastCacheRepository: ForecastCacheRepository
 
     private lateinit var forecastModel: ForecastModel
 

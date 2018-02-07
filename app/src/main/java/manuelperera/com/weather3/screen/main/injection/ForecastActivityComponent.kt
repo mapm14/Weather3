@@ -5,7 +5,7 @@ import manuelperera.com.weather3.injection.AppComponent
 import manuelperera.com.weather3.screen.main.ForecastActivity
 
 @ForecastActivityScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = [(ForecastActivityModule::class)])
+@Component(dependencies = [(AppComponent::class)], modules = [(ForecastActivityModule::class)])
 interface ForecastActivityComponent {
 
     fun inject(forecastActivity: ForecastActivity)

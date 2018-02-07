@@ -13,7 +13,6 @@ import manuelperera.com.weather3.domain.objects.City
 import manuelperera.com.weather3.domain.objects.Coordinates
 import manuelperera.com.weather3.domain.objects.ForecastByCity
 import manuelperera.com.weather3.domain.repository.api.ForecastApiRepository
-import manuelperera.com.weather3.domain.repository.cache.ForecastCacheRepository
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.Before
@@ -28,18 +27,16 @@ import retrofit2.adapter.rxjava2.Result
 @RunWith(MockitoJUnitRunner::class)
 class ForecastApiRepositoryUnitTest {
 
-    @Mock private
-    lateinit var transactionRequest: TransactionRequest<ForecastByCity>
+    @Mock
+    private lateinit var transactionRequest: TransactionRequest<ForecastByCity>
 
-    @Mock private
-    lateinit var transactionRequestFactory: TransactionRequestFactory<ForecastByCity>
+    @Mock
+    private lateinit var transactionRequestFactory: TransactionRequestFactory<ForecastByCity>
 
-    @Mock private
-    lateinit var forecastApiClient: ForecastApiClient
+    @Mock
+    private lateinit var forecastApiClient: ForecastApiClient
 
     private lateinit var forecastApiRepository: ForecastApiRepository
-
-    private lateinit var forecastCacheRepository: ForecastCacheRepository
 
     @Before
     fun setUp() {
@@ -48,8 +45,6 @@ class ForecastApiRepositoryUnitTest {
         whenever(transactionRequestFactory.createTransactionRequest()).doReturn(transactionRequest)
 
         forecastApiRepository = ForecastApiRepository(forecastApiClient, transactionRequestFactory)
-
-        forecastCacheRepository = ForecastCacheRepository()
     }
 
     @Test
@@ -91,7 +86,7 @@ class ForecastApiRepositoryUnitTest {
         testObserver.assertComplete()
         testObserver.assertValueCount(1)
         testObserver.assertValue { transaction ->
-            transaction.data == null && !transaction.isSuccess() && transaction.status == TransactionStatus.ERROR
+            transaction.data == null && transaction.status == TransactionStatus.ERROR
         }
     }
 
@@ -112,7 +107,7 @@ class ForecastApiRepositoryUnitTest {
         testObserver.assertComplete()
         testObserver.assertValueCount(1)
         testObserver.assertValue { transaction ->
-            transaction.data == null && !transaction.isSuccess() && transaction.status == TransactionStatus.TIMEOUT
+            transaction.data == null && transaction.status == TransactionStatus.TIMEOUT
         }
     }
 }

@@ -24,8 +24,8 @@ import org.jetbrains.anko.image
 import java.text.SimpleDateFormat
 import java.util.*
 
-val patternDateFromAPI = "yyyy-MM-dd HH:mm:ss"
-val patternDateOfApp = "dd/MM HH:mm"
+const val patternDateFromAPI = "yyyy-MM-dd HH:mm:ss"
+const val patternDateOfApp = "dd/MM HH:mm"
 
 fun ViewGroup.inflate(layoutResourceId: Int): View = LayoutInflater.from(context).inflate(layoutResourceId, this, false)
 

@@ -1,7 +1,7 @@
 package manuelperera.com.base.usecase
 
-interface UseCaseWithParams<T, P : UseCaseParams> {
+interface UseCaseWithParams<out T, in P : UseCaseParams> {
 
-    abstract fun bind(params: P): T
+    fun bind(params: P): T
 
 }

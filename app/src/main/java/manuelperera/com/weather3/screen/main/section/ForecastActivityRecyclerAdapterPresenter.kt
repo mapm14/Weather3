@@ -21,9 +21,7 @@ class ForecastActivityRecyclerAdapterPresenter(private val getForecastsUseCase: 
     }
 
     override fun getItemClickCompletable(viewClicked: View, data: Forecast): Completable =
-            Completable.create {
-                it.onComplete()
-            }
+            Completable.complete()
 
     override fun getLoadingList(): MutableList<Forecast> = mutableListOf(Forecast(RecyclerViewAdapterItem.Type.LOADING))
 

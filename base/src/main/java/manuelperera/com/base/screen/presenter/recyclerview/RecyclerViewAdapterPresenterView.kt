@@ -5,6 +5,6 @@ import manuelperera.com.base.screen.presenter.PresenterView
 
 interface RecyclerViewAdapterPresenterView: PresenterView {
 
-    abstract fun getDiffResultBinder(diffResult: DiffUtil.DiffResult): DiffUtil.DiffResult
+    fun getDiffResultBinder(diffResult: DiffUtil.DiffResult): DiffUtil.DiffResult
 
 }

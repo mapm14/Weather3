@@ -13,13 +13,13 @@ open class ForecastModel(private val forecastApiRepository: ForecastApiRepositor
 
     open fun getForecasts(lat: String, lon: String): Observable<Transaction<ForecastByCity>> =
             forecastCacheRepository.getForecasts()
-                    .concatWith(forecastApiRepository.getForecasts(lat, lon)).doOnNext { transaction ->
-                transaction.data?.let { data ->
-                    if (transaction.isSuccess())
-                        forecastCacheRepository.cacheForecasts(data)
-
-                }
-            }
+                    .concatWith(forecastApiRepository.getForecasts(lat, lon))
+                    .doOnNext { transaction ->
+                        transaction.data?.let { data ->
+                            if (transaction.isSuccess())
+                                forecastCacheRepository.cacheForecasts(data)
+                        }
+                    }
                     .first(Transaction(status = TransactionStatus.EXCEPTION)).toObservable()
 
     open fun clearCacheForecast(): Completable =

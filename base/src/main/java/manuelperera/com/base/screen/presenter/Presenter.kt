@@ -15,12 +15,11 @@ abstract class Presenter<V : PresenterView> {
 
     fun clear() {
         view = null
-        if (mCompositeDisposable != null)
-            mCompositeDisposable!!.dispose()
+        mCompositeDisposable?.dispose()
     }
 
     protected fun addSubscription(disposable: Disposable) {
-        mCompositeDisposable!!.add(disposable)
+        mCompositeDisposable?.add(disposable)
     }
 
     protected abstract fun init()

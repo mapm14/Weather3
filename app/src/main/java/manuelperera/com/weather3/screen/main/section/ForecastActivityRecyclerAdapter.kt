@@ -30,21 +30,21 @@ class ForecastActivityRecyclerAdapter(private val forecastActivityPresenterView:
         DaggerForecastActivityRecyclerAdapterComponent.builder().appComponent(Weather3App.Companion.daggerAppComponent()).build().inject(this)
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         forecastActivityRecyclerAdapterPresenter.init(this)
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         forecastActivityRecyclerAdapterPresenter.clear()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerViewViewHolder<Forecast>? =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewViewHolder<Forecast> =
             when (viewType) {
-                RecyclerViewAdapterItem.Type.ITEM.ordinal -> ForecastViewHolder(ForecastChromeView(parent!!.context), forecastActivityRecyclerAdapterPresenter)
-                RecyclerViewAdapterItem.Type.LOADING.ordinal -> LoadingSectionViewHolder((parent!!.inflate(R.layout.item_loading)))
-                else -> ErrorSectionViewHolder((parent!!.inflate(R.layout.item_error)), { view ->
+                RecyclerViewAdapterItem.Type.ITEM.ordinal -> ForecastViewHolder(ForecastChromeView(parent.context), forecastActivityRecyclerAdapterPresenter)
+                RecyclerViewAdapterItem.Type.LOADING.ordinal -> LoadingSectionViewHolder((parent.inflate(R.layout.item_loading)))
+                else -> ErrorSectionViewHolder((parent.inflate(R.layout.item_error)), { view ->
                     forecastActivityRecyclerAdapterPresenter.bindReloadDataObservable(view.networkErrorRetryButton.asObservable())
                 })
             }

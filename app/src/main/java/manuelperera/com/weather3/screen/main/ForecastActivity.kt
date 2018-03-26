@@ -116,8 +116,8 @@ class ForecastActivity : FragmentActivity(), ForecastActivityPresenterView, Text
     private fun requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ReactivePermission.Builder(this)
-                    .setPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                    .setPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    .addPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    .addPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                     .subscribe { permissionResults ->
                         if (permissionResults.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION) && permissionResults.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
                             setLatAndLng()
